@@ -1,4 +1,4 @@
-import { of, from, merge, partition, Observable, Subscription } from 'rxjs';
+import { from, merge, Observable, of, partition, OperatorFunction } from 'rxjs';
 import { map, mergeMap, timeoutWith } from 'rxjs/operators';
 import { StreamRegistry } from './stream-registry';
 
@@ -8,7 +8,7 @@ interface item<T> {
   timeout: boolean
 }
 
-export const twoWayFilterAsyncTimeout = <T>(predicate: (value: T, index: number) => Promise<boolean>, errFormat: (value: T) => any, timeout: number, fallbackAs: boolean) => (source: Observable<T>) => {
+export const twoWayFilterAsyncTimeout = <T>(predicate: (value: T, index: number) => Promise<boolean>, errFormat: (value: T) => any, timeout: number, fallbackAs: boolean): OperatorFunction<T,T> => (source: Observable<T>) => {
   let count = 0;
   const sr = StreamRegistry.getInstance();
   const tested$ = source.pipe(

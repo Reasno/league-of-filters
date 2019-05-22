@@ -1,6 +1,6 @@
 {
   "name": "league-of-filters",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of filters for rxjs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

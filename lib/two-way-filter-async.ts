@@ -1,8 +1,8 @@
-import { from, merge, partition, Observable } from 'rxjs';
+import { from, merge, partition, Observable, OperatorFunction } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { StreamRegistry } from './stream-registry';
 
-export const twoWayFilterAsync = <T>(predicate: (value: T, index: number) => Promise<boolean>, errFormat: (value: T) => any) => (source: Observable<T>) => {
+export const twoWayFilterAsync = <T>(predicate: (value: T, index: number) => Promise<boolean>, errFormat: (value: T) => any): OperatorFunction<T,T> => (source: Observable<T>) => {
   let count = 0;
   const sr = StreamRegistry.getInstance();
   const tested$ = source.pipe(
