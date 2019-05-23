@@ -20,5 +20,13 @@ export class StreamRegistry {
     }
     return StreamRegistry.instance;
   }
+
+  static factory(): StreamRegistry {
+    return new StreamRegistry(
+      new Observable(),
+      new Observable(),
+      new Observable()
+    );
+  }
 }
 export const registry = StreamRegistry.getInstance();

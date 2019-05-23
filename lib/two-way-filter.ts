@@ -5,10 +5,11 @@ import { FormatFunc, Type, SyncPredicate, AsyncPredicate } from "./types";
 
 export const twoWayFilter = <T>(
   predicate: SyncPredicate<T> | AsyncPredicate<T>,
-  errFormat?: FormatFunc<T>
+  errFormat?: FormatFunc<T>,
+  registry?: StreamRegistry
 ): OperatorFunction<T, T> => (source: Observable<T>) => {
   let count = 0;
-  const sr = StreamRegistry.getInstance();
+  const sr = registry || StreamRegistry.getInstance();
   const tested$ = source.pipe(
     mergeMap((data: T) => {
       return from(Promise.resolve(predicate(data, count++))).pipe(
