@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "format": "prettier --write \"lib/**/*.ts\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +23,8 @@
   "homepage": "https://github.com/Reasno/league-of-filters#readme",
   "dependencies": {
     "rxjs": "^6.5.2"
+  },
+  "devDependencies": {
+    "prettier": "^1.17.1"
   }
 }

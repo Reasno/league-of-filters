@@ -1,17 +1,34 @@
-import { merge, partition, Observable, OperatorFunction } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { StreamRegistry } from './stream-registry';
-import { FormatFunc, Type }  from './types';
+import { from, merge, partition, Observable, OperatorFunction } from "rxjs";
+import { map, mergeMap } from "rxjs/operators";
+import { StreamRegistry } from "./stream-registry";
+import { FormatFunc, Type, SyncPredicate, AsyncPredicate } from "./types";
 
-export const twoWayFilter = <T>(predicate: (value: T, index: number) => boolean, errFormat?: FormatFunc<T>) : OperatorFunction<T,T> => (source: Observable<T>) => {
+export const twoWayFilter = <T>(
+  predicate: SyncPredicate<T> | AsyncPredicate<T>,
+  errFormat?: FormatFunc<T>
+): OperatorFunction<T, T> => (source: Observable<T>) => {
+  let count = 0;
   const sr = StreamRegistry.getInstance();
-  const [ok$, err$] = partition(source, predicate);
+  const tested$ = source.pipe(
+    mergeMap((data: T) => {
+      return from(Promise.resolve(predicate(data, count++))).pipe(
+        map(isValid => ({ filterResult: isValid, entry: data }))
+      );
+    })
+  );
+  const [ok$, err$] = partition(
+    tested$,
+    (data: { filterResult: boolean; entry: T }) => data.filterResult === true
+  );
   if (errFormat) {
-    const msg$ = err$.pipe(map(x => errFormat(x, Type.Common)));
+    const msg$ = err$.pipe(
+      map((data: { filterResult: boolean; entry: T }) =>
+        errFormat(data.entry, Type.Common)
+      )
+    );
     sr.common = merge(sr.common, msg$);
   } else {
-    sr.common = merge(sr.common, err$);
+    sr.common = merge(sr.common, err$.pipe(map(data => data.entry)));
   }
-
-  return ok$;
+  return ok$.pipe(map(data => data.entry));
 };

@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 export class StreamRegistry {
   private static instance: StreamRegistry;
   public common: Observable<any>;
@@ -12,7 +12,11 @@ export class StreamRegistry {
 
   static getInstance(): StreamRegistry {
     if (!StreamRegistry.instance) {
-      StreamRegistry.instance = new StreamRegistry(new Observable(), new Observable(), new Observable());
+      StreamRegistry.instance = new StreamRegistry(
+        new Observable(),
+        new Observable(),
+        new Observable()
+      );
     }
     return StreamRegistry.instance;
   }
