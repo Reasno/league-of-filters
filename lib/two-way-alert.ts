@@ -37,7 +37,7 @@ export const twoWayAlert = <T>(
     const msg$ = err$.pipe(map(x => errFormat(x.entry, Type.Alert)));
     sr.alert = merge(sr.alert, msg$);
   } else {
-    sr.alert = merge(sr.alert, err$);
+    sr.alert = merge(sr.alert, err$.pipe(map(data => data.entry)));
   }
   return final$.pipe(map(data => data.entry));
 };
