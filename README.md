@@ -14,7 +14,7 @@ import {
   twoWayAlert,
   twoWayFilter,
   twoWayFilterTimeout
-} from "../lib";
+} from "league-of-filters";
 
 const observableValues = range(1, 100);
 
@@ -70,7 +70,7 @@ The predicate in this filter may also be asynchronouse.
 
 ## twoWayAlert
 
-*twoWayAlert* behaves just like twoWayFiler, except that instead of the actual filtering, it will keep all elements in the main stream, only making a copy of elements matching predicate to the predefined alert stream.
+*twoWayAlert* behaves just like twoWayFilter, except that instead of the actual filtering, it will keep all elements in the main stream, only making a copy of elements matching predicate to the predefined alert stream.
 
 The predicate in this filter may also be asynchronouse.
 
