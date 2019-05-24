@@ -1,6 +1,11 @@
 # league-of-filters
 A collection of filters for rxjs. This library provides methods to gain insight of rxjs streams by branching filtered elements into sencondary streams. 
 
+## installation
+```
+npm install --save league-of-filters
+```
+
 ## example
 ```javascript
 import { range } from "rxjs";
