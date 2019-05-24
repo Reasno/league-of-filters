@@ -1,5 +1,5 @@
 # league-of-filters
-A collection of filters for rxjs.
+A collection of filters for rxjs. This library provides method to gain insight of rxjs streams by branching filtered elements into sencondary streams. 
 
 ## example
 ```javascript
@@ -30,7 +30,7 @@ registry.alert.subscribe(x => console.log('alert', x));
 
 ## StreamRegistry
 
-StreamRegistry is a collection of observables taking notes of what have gone through the filters. This is useful when you want to gain more *observability* into the stream processing.
+*StreamRegistry* is a collection of observables taking notes of what have gone through the filters. This is useful when you want to gain more *observability* into the stream processing.
 
 registry.common is for the filtered items.
 registry.timeout is for all timeouts.

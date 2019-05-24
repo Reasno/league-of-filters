@@ -4,6 +4,11 @@ export enum Type {
   Alert
 }
 
+/**
+ * Function to format the filtered elements 
+ * into the format we want in the secondary 
+ * streams.
+ */
 export interface FormatFunc<T> {
   (source: T, type?: Type): any;
 }
