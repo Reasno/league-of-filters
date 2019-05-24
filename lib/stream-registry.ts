@@ -33,7 +33,7 @@ export class StreamRegistry {
   }
 
   /**
-   * Get the global default registry, initialize it if 
+   * Get the global default registry, initialize it if
    * necessary.
    * @return {StreamRegistry}
    */
@@ -53,7 +53,7 @@ export class StreamRegistry {
    * This method allows user to make their own
    * registries based on their need, without
    * having to hack the global default.
-   * 
+   *
    * @return {StreamRegistry}
    */
   static factory(): StreamRegistry {
