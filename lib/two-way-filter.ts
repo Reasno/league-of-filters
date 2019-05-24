@@ -3,6 +3,14 @@ import { map, mergeMap } from "rxjs/operators";
 import { StreamRegistry } from "./stream-registry";
 import { FormatFunc, Type, SyncPredicate, AsyncPredicate } from "./types";
 
+/**
+ * twoWayFilter behaves just like a normal filter in rxjs,
+ * except that it will output filtered results to a predefined
+ * stream.
+ *
+ * The predicate in this filter may also be asynchronouse.
+ * @type {OperatorFunction<T, T>b  }
+ */
 export const twoWayFilter = <T>(
   predicate: SyncPredicate<T> | AsyncPredicate<T>,
   errFormat?: FormatFunc<T>,
