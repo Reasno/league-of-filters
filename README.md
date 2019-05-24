@@ -53,9 +53,9 @@ registry.alert.subscribe(x => console.log("alert", x));
 
 *StreamRegistry* is a collection of observables taking notes of what have gone through the filters. This is useful when you want to gain more *observability* into the stream processing.
 
-registry.common is for the filtered items.
-registry.timeout is for all timeouts.
-registry.alert is for all alerts.
+* registry.common is for the filtered items.
+* registry.timeout is for all timeouts.
+* registry.alert is for all alerts.
 
 ## twoWayFilter
 
