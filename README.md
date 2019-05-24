@@ -1,5 +1,5 @@
 # league-of-filters
-A collection of filters for rxjs. This library provides method to gain insight of rxjs streams by branching filtered elements into sencondary streams. 
+A collection of filters for rxjs. This library provides methods to gain insight of rxjs streams by branching filtered elements into sencondary streams. 
 
 ## example
 ```javascript
